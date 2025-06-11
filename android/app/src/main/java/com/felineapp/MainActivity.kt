@@ -5,7 +5,7 @@ import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 import android.os.Bundle;
-Import org.devio.rn.splashscreen.Splashscreen;
+import org.devio.rn.splashscreen.SplashScreen;
 
 class MainActivity : ReactActivity() {
 
