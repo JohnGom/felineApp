@@ -9,6 +9,7 @@ interface BreedState {
   loading: boolean
   error: string | null
   searchTerm: string
+  searchBreeds: (search: string) => void
   fetchBreeds: () => Promise<void>
   toggleLike: (id: string) => Promise<void>
   loadLikes: () => Promise<void>

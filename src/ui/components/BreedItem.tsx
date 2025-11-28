@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Breed } from '../../domain/breed';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useBreedStore } from '../../store/breedStore';
+import { Heart } from 'lucide-react-native';
 
 type RootStackParamList = {
   Home: undefined;
@@ -32,15 +33,12 @@ const BreedItem: React.FC<BreedItemProps> = ({ item }) => {
       <View style={styles.info}>
         <View style={styles.contentTitle}>
           <Text style={styles.title}>{item.name}</Text>
-          <TouchableOpacity onPress={() => toggleLike(item.id)}>
-            <Text style={{ fontSize: 24 }}>
-              {item.liked ? '❤️' : '🤍'}
-            </Text>
-          </TouchableOpacity>
+          <TouchableOpacity onPress={() => toggleLike(item.id)} >
+            {item?.liked ? <Heart fill={'red'} size={24} /> : <Heart size={24} />}
+        </TouchableOpacity>
         </View>
         <Text style={styles.meta}>Origin: {item.origin}</Text>
-        <Text style={styles.meta}>Temperament: {item.temperament}</Text>
-        <Text style={styles.meta}>Life Span: {item.life_span}</Text>
+        <Text style={styles.meta}>Life Span: {item.life_span} Years</Text>
       </View>
     </TouchableOpacity>
   );
@@ -63,6 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 10,
   },
   image: {
     width: 100,
@@ -93,9 +92,12 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   meta: {
-    marginBottom: 4,
-    fontSize: 12,
+    marginBottom: 5,
+    fontSize: 14,
     color: '#666',
+  },
+  iconFont: {
+    fontSize: 24,
   },
 });
 
