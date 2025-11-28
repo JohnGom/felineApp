@@ -5,6 +5,7 @@ export const breedRepository = {
   async getBreeds(): Promise<Breed[]> {
     try {
       const data = await fetchBreeds();
+
       return data.map((item: any) => ({
         id: item.id,
         name: item.name,
@@ -13,6 +14,7 @@ export const breedRepository = {
         origin: item.origin,
         life_span: item.life_span,
         imageUrl: item.image?.url,
+        aux_image: item.reference_image_id ? `https://cdn2.thecatapi.com/images/${item.reference_image_id}.jpg` : null,
       }));
     } catch (error: any) {
       throw new Error('No se pudieron obtener las razas: ' + (error.message || error));

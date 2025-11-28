@@ -15,16 +15,14 @@ interface BreedItemProps {
   item: Breed;
 }
 
-const defaultImage = 'https://png.pngtree.com/png-vector/20240731/ourlarge/pngtree-cat-sitting-silhouette-png-image_13306435.png';
-
 const BreedItem: React.FC<BreedItemProps> = ({ item }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const toggleLike = useBreedStore(state => state.toggleLike);
 
   return (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Detail', { breed: item })}>
-      {item.imageUrl ? (
-        <Image source={{ uri: item.imageUrl || defaultImage}} style={styles.image} />
+      {(item.imageUrl || item.aux_image) ? (
+        <Image source={{ uri: item.imageUrl || item.aux_image }} style={styles.image} />
       ) : (
         <View style={[styles.image, styles.placeholder]}>
           <Text style={styles.placeholderText}>No Image</Text>

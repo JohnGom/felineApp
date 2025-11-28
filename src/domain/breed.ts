@@ -7,4 +7,5 @@ export interface Breed {
     life_span: string;
     imageUrl?: string;
     liked?: boolean;
+    aux_image?: string;
 }
