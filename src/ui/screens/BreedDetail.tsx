@@ -34,9 +34,9 @@ export const BreedDetail = ({ route }: DetailScreenProps) => {
         <TouchableOpacity onPress={() => toggleLike(breed.id)} style={styles.hearIcon}>
             {current?.liked ? <Heart fill={'red'} size={28} /> : <Heart color={'#f2f2f2'} size={28} />}
         </TouchableOpacity>
-        {breed.imageUrl && (
+        {(breed.imageUrl || breed.aux_image) && (
           <Image
-            source={{ uri: breed.imageUrl }}
+            source={{ uri: breed.imageUrl || breed.aux_image }}
             style={styles.image}
             resizeMode="cover"
           />
@@ -60,7 +60,7 @@ export const BreedDetail = ({ route }: DetailScreenProps) => {
           onPress={() => setVisible(false)}
         >
           <Image
-            source={{ uri: breed.imageUrl }}
+            source={{ uri: breed.imageUrl || breed.aux_image}}
             style={{flex: 1}}
             resizeMode="contain"
           />
@@ -81,8 +81,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    aspectRatio: 16 / 9, // ancho / alto
-    resizeMode: 'cover',
+    aspectRatio: 16 / 9,
   },
   scrollContent: {
     flexDirection: 'column',
