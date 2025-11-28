@@ -1,4 +1,4 @@
-import { getLikedBreeds, setLikedBreeds, toggleLikedBreed } from '../utils/likeStorage';
+import { getLikedBreeds, setLikedBreeds, toggleLikedBreed } from '../src/utils/likeStorage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({

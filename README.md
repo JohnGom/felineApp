@@ -1,97 +1,198 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🐱 FelineApp
 
-# Getting Started
+Una aplicación móvil desarrollada en React Native para explorar y descubrir información sobre diferentes razas de gatos. La aplicación utiliza The Cat API para obtener datos sobre razas felinas y permite a los usuarios buscar, ver detalles y guardar sus razas favoritas.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## ✨ Características
 
-## Step 1: Start Metro
+- 📋 **Lista de Razas**: Explora una amplia colección de razas de gatos con información detallada
+- 🔍 **Búsqueda**: Busca razas por nombre en tiempo real
+- ❤️ **Favoritos**: Marca tus razas favoritas y guárdalas localmente
+- 📱 **Navegación**: Navega entre la lista y los detalles de cada raza
+- 🖼️ **Imágenes**: Visualiza imágenes de cada raza de gato
+- 💾 **Persistencia**: Tus favoritos se guardan localmente usando AsyncStorage
+- 🎨 **UI Moderna**: Interfaz de usuario limpia y moderna
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🛠️ Tecnologías
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **React Native** 0.79.3
+- **React** 19.0.0
+- **TypeScript** 5.0.4
+- **Zustand** 5.0.5 - Gestión de estado
+- **React Navigation** 7.x - Navegación entre pantallas
+- **Axios** 1.9.0 - Cliente HTTP para llamadas a la API
+- **AsyncStorage** 2.2.0 - Almacenamiento local
+- **React Native Config** 1.6.0 - Gestión de variables de entorno
 
-```sh
-# Using npm
+## 📋 Requisitos Previos
+
+- Node.js >= 18
+- npm o yarn
+- React Native CLI
+- Android Studio (para Android)
+- Xcode (para iOS, solo macOS)
+- CocoaPods (para iOS)
+
+## 🚀 Instalación
+
+1. **Clona el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd felineApp
+   ```
+
+2. **Instala las dependencias**
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
+
+3. **Configuración de iOS (solo macOS)**
+   ```bash
+   # Instala las dependencias de Ruby (primera vez)
+   bundle install
+   
+   # Instala las dependencias de CocoaPods
+   bundle exec pod install
+   ```
+
+4. **Configuración de variables de entorno**
+   
+   Crea un archivo `.env` en la raíz del proyecto:
+   ```env
+   API_KEY=tu_api_key_de_thecatapi
+   ```
+   
+   Para obtener una API key gratuita, visita [The Cat API](https://thecatapi.com/) y regístrate.
+
+## 🏃 Ejecución
+
+### Iniciar Metro Bundler
+
+```bash
 npm start
-
-# OR using Yarn
+# o
 yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
 ### Android
 
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
+# o
 yarn android
 ```
 
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+```bash
 npm run ios
-
-# OR using Yarn
+# o
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 📁 Estructura del Proyecto
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```
+felineApp/
+├── src/
+│   ├── api/              # Cliente API y funciones de fetch
+│   │   └── catApi.ts
+│   ├── domain/           # Modelos de dominio y lógica de negocio
+│   │   ├── breed.ts
+│   │   └── getBreeds.ts
+│   ├── store/            # Estado global con Zustand
+│   │   └── breedStore.ts
+│   ├── ui/               # Componentes y pantallas
+│   │   ├── components/
+│   │   │   ├── BreedItem.tsx
+│   │   │   └── SearchInput.tsx
+│   │   └── screens/
+│   │       ├── BreedList.tsx
+│   │       └── BreedDetail.tsx
+│   ├── utils/            # Utilidades
+│   │   └── likeStorage.ts
+│   └── __tests__/        # Tests unitarios
+├── android/              # Código nativo Android
+├── ios/                  # Código nativo iOS
+├── App.tsx               # Componente principal
+└── package.json
+```
 
-## Step 3: Modify your app
+## 🏗️ Arquitectura
 
-Now that you have successfully run the app, let's make changes!
+La aplicación sigue una arquitectura limpia con separación de responsabilidades:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- **Domain**: Modelos de datos y lógica de negocio
+- **API**: Capa de comunicación con servicios externos
+- **Store**: Gestión de estado global con Zustand
+- **UI**: Componentes y pantallas de la interfaz de usuario
+- **Utils**: Utilidades y helpers
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## 🧪 Testing
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Ejecuta los tests con:
 
-## Congratulations! :tada:
+```bash
+npm test
+# o
+yarn test
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+## 📱 Funcionalidades Principales
 
-### Now what?
+### Lista de Razas
+- Muestra todas las razas de gatos disponibles
+- Búsqueda en tiempo real por nombre
+- Indicador visual de razas favoritas
+- Manejo de estados de carga y error
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+### Detalle de Raza
+- Información completa de la raza
+- Imagen de alta calidad
+- Descripción detallada
+- Origen, esperanza de vida y temperamento
+- Botón para agregar/quitar de favoritos
 
-# Troubleshooting
+### Favoritos
+- Persistencia local con AsyncStorage
+- Sincronización automática entre pantallas
+- Indicadores visuales (❤️/🤍)
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 🔧 Scripts Disponibles
 
-# Learn More
+- `npm start` - Inicia Metro Bundler
+- `npm run android` - Ejecuta la app en Android
+- `npm run ios` - Ejecuta la app en iOS
+- `npm test` - Ejecuta los tests
+- `npm run lint` - Ejecuta el linter
 
-To learn more about React Native, take a look at the following resources:
+## 📝 Notas
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- La aplicación requiere una API key de The Cat API para funcionar correctamente
+- Los favoritos se almacenan localmente en el dispositivo
+- La aplicación está optimizada para iOS y Android
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Haz un fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto es privado.
+
+## 🙏 Agradecimientos
+
+- [The Cat API](https://thecatapi.com/) por proporcionar la API de razas de gatos
+- [React Native](https://reactnative.dev/) por el framework
+- Todos los contribuidores de las librerías utilizadas
+
+---
+
+Desarrollado con ❤️ usando React Native

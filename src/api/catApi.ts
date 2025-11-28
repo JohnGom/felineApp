@@ -1,12 +1,12 @@
 import axios from 'axios';
+import Config from 'react-native-config';
 
-const API_KEY = 'live_99Qe4Ppj34NdplyLW67xCV7Ds0oSLKGgcWWYnSzMJY9C0QOu0HUR4azYxWkyW2nr';
 const BASE_URL = 'https://api.thecatapi.com/v1';
 
 export const catApi = axios.create({
   baseURL: BASE_URL,
   headers: {
-    'x-api-key': API_KEY,
+    'x-api-key': Config.API_KEY,
   },
 });
 

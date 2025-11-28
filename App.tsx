@@ -18,7 +18,7 @@ import { BreedDetail } from './src/ui/screens/BreedDetail';
 import SplashScreen from 'react-native-splash-screen';
 import { Breed } from './src/domain/breed';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Home: undefined;
   Detail: { breed: Breed };
 };
@@ -36,7 +36,7 @@ function App(): React.JSX.Element {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={BreedList} />
+          <Stack.Screen name="Home" options={{ title: 'Catbreeds' }} component={BreedList} />
           <Stack.Screen name="Detail" component={BreedDetail} options={({ route }) => ({ title: route.params.breed.name })} />
         </Stack.Navigator>
       </NavigationContainer>
